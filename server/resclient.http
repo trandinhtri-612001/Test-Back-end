@@ -1,0 +1,62 @@
+post http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+# {
+#     "username":"tonyhomepage",
+#     "password":"111111$r",
+#     "email":"trantri123rc@gmail.com",
+#     "phonenumber":1234567985,
+#     "adress":"1-50 cs",
+#      "emoji":"avta.png"
+# }
+
+{
+    "username":"henry",
+    "password":"111111$r",
+    "email":"trantri123rc@gmail.com",
+    "phonenumber":1234567985,
+    "adress":"1-50 cs",
+     "emoji":"ff.png"
+}
+
+###
+//login
+post http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+
+{
+    "username":"henry567909",
+    "password":"111111$r"
+    
+}
+
+###
+//get detail user
+get  http://localhost:8080/api/auth
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MThjZDUyYzdiNTIxOWQzNmE1MWUzOGUiLCJpYXQiOjE2MzY2MjAyNDh9.t5-o_tK2Efl7AkWXTVRiqUY9Pq1_Xj7o00oUJv7Rl5c
+
+###
+//get list user
+get  http://localhost:8080/api/auth/find
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MThjZDUyYzdiNTIxOWQzNmE1MWUzOGUiLCJpYXQiOjE2MzY2MTk5MTZ9.qKcsroyt0vdhy1YVnoeQlbS3ejzRfM22-t0qVHAbUPg
+
+###
+//update user
+put  http://localhost:8080/api/auth/618cd52c7b5219d36a51e38e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MThjZDUyYzdiNTIxOWQzNmE1MWUzOGUiLCJpYXQiOjE2MzY2MjAyNDh9.t5-o_tK2Efl7AkWXTVRiqUY9Pq1_Xj7o00oUJv7Rl5c
+Content-Type: application/json
+
+{
+    "username":"tranlamphong",
+    "password":"222222$ty",
+    "email":"trantri123rc@gmail.com",
+    "phonenumber":1234567985,
+    "adress":"nf- cs",
+     "emoji":"jj.png",
+     "oldpassword":"111111$r"
+}
+
+###
+delete  http://localhost:8080/api/auth/618cd52c7b5219d36a51e38e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MThjZDUyYzdiNTIxOWQzNmE1MWUzOGUiLCJpYXQiOjE2MzY2MjAyNDh9.t5-o_tK2Efl7AkWXTVRiqUY9Pq1_Xj7o00oUJv7Rl5c

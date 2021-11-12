@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const argon2 = require('argon2');
 const Users = require('../Model/User');
 const verifyToken = require('../medleware/auth');
-
+const multer =require('multer')
 const { check, validationResult } = require('express-validator');
 
 //GET USER
@@ -48,7 +48,26 @@ router.get('/find', verifyToken, async (req, res) => {
     res.status(500).json(err);
   }
 });
+//  multer uploat img
+let imgname;
+  const storage  = multer.diskStorage({
+      destination:(req,file,cb)=>{
+          if(file.mimetype=== "image/jpg"||
+          file.mimetype==="image/png"||
+          file.mimetype==="image/jpeg"){
+              cb(null,'./asess')
+          }else{
+              cb(new Error('img not file'),false);
+          }
+      },
+      filename:(req,file,cb)=>{
+          imgname=Date.now+'.jpg'
 
+          cb(null,imgname);
+      }
+  })
+ const upload = multer({storage:storage });
+//  const cbuploaad = upload.single(req.emoji)
 //create user
 //api/auth/register
 
@@ -63,6 +82,7 @@ check('phonenumber').notEmpty().withMessage('phonenumber cannot taken')
 
 
 ],async(req, res) => {
+    
     const { username, password, email, phonenumber,adress,emoji } = req.body;
     if (!username || !password || !email || !phonenumber) {
         return res.status(400).json({

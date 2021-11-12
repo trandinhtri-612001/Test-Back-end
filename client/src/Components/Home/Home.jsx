@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table'
 import { AuthContext } from '../../context/authContext'
 import Sigertable from '../View/Sigertable'
 import ModalUdate from '../View/ModalUdate'
+import Image from 'react-bootstrap/Image'
 const Home = () => {
     const {authState:{user,alluser}, getalluser}= useContext(AuthContext)
   console.log(alluser);
@@ -34,7 +35,9 @@ const Home = () => {
               return(
                  <tr key={el._id}>
       <td>1</td>
-      <td>{el.emoji}</td>
+      <td>
+      <Image src={el.emoji} roundedCircle />
+      </td>
       <td>{el.username}</td>
       <td>{el.phonenumber}</td>
       <td>{el.adress}</td>

@@ -13,7 +13,26 @@ const Register = () => {
     //context
     const { registerUser} = useContext(AuthContext);
       const history = useHistory();
-      
+      //  ploadimg
+      const uploadimg= async(e)=>{
+        const file = e.target.files[0];
+        const base64 = await convserBase64(file)
+        setregister({...register,emoji:base64})
+console.log(typeof base64);
+
+      }
+      const convserBase64 = (file)=>{
+        return new Promise((res,rej)=>{
+          const fileRender=new FileReader();
+          fileRender.readAsDataURL(file);
+          fileRender.onload=()=>{
+            res(fileRender.result);
+          };
+          fileRender.onerror = (err)=>{
+            rej(err);
+          };
+        });
+      };
     const [register, setregister] = useState({
       username: '',
       password:'',
@@ -25,7 +44,7 @@ const Register = () => {
     const [alert ,setalert] = useState(null)
     const onchangeregister = (event) => {
         setregister({...register, [event.target.name]: event.target.value})
-      //console.log(loginFrom)
+     
     }
       const { username, password,email,phonenumber,adress,emoji} = register;
       
@@ -34,7 +53,7 @@ const Register = () => {
       e.preventDefault()
       console.log(register);
           try {
-      console.log(register.emoji);
+      
               const userdata = await registerUser(register)
               console.log(userdata)
               if (userdata.success) {
@@ -122,8 +141,9 @@ const Register = () => {
     <Form.Control type="file" 
     name="emoji" 
     placeholder="emoji"
-    onChange={onchangeregister}
-    value={emoji}
+    onChange={uploadimg}
+   
+
     />
   </Form.Group>
   <Form.Group className="mb-3" controlId="formBasicCheckbox">

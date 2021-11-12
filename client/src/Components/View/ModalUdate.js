@@ -4,9 +4,30 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { AuthContext } from '../../context/authContext'
 import AlertMessage from './Alertmessage'
-const ModalUdate = (props) => {
-    console.log(props.el)
+const ModalUdate = (props) => { 
+
+ 
 const {updateuser} =useContext(AuthContext)
+
+const uploadimg= async(e)=>{
+  const file = e.target.files[0];
+  const base64 = await convserBase64(file)
+  setdata({...data,emoji:base64})
+console.log( base64);
+
+}
+const convserBase64 = (file)=>{
+  return new Promise((res,rej)=>{
+    const fileRender=new FileReader();
+    fileRender.readAsDataURL(file);
+    fileRender.onload=()=>{
+      res(fileRender.result);
+    };
+    fileRender.onerror = (err)=>{
+      rej(err);
+    };
+  });
+};
 const [data, setdata] = useState({
     username: "",
     password:'',
@@ -19,13 +40,13 @@ const [data, setdata] = useState({
   const [alert ,setalert] = useState(null)
   const onchangeregister = (event) => {
     setdata({...data, [event.target.name]: event.target.value})
- 
+ console.log(data)
   }
   
     const { username, password,email,phonenumber,adress,emoji,oldpassword} = data;
     
      const onsybmitud=async(e)=>{
-         console.log(e)
+         console.log(data)
         e.preventDefault();
         try{
          const res =await updateuser(data,props.el._id)
@@ -118,8 +139,8 @@ setalert(null)
     <Form.Control type="file" 
     name="emoji" 
     placeholder="emoji"
-    onChange={onchangeregister}
-    value={emoji}
+    onChange={uploadimg}
+  
     />
     
   </Form.Group>

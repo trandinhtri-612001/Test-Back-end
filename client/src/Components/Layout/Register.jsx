@@ -14,11 +14,27 @@ const Register = () => {
     const { registerUser} = useContext(AuthContext);
       const history = useHistory();
       //  ploadimg
+const [filenme, setfilenme] = useState('')
       const uploadimg= async(e)=>{
         const file = e.target.files[0];
+        const typeimg =file.name.split('.')[1]
+        if(typeimg != 'jpg'&& typeimg != 'png'&& typeimg !='jpag' ){
+          setregister({...register,emoji:''})
+          
+          setalert({ show:true, message: "file canot type " +typeimg })
+          setTimeout(() => {
+              setalert(null)
+          }, 3000)
+          console.log(typeimg);
+          return 0;
+        }else{
+         console.log(typeimg);
+        }
+
         const base64 = await convserBase64(file)
         setregister({...register,emoji:base64})
-console.log(typeof base64);
+        console.log(register);
+
 
       }
       const convserBase64 = (file)=>{
@@ -142,7 +158,7 @@ console.log(typeof base64);
     name="emoji" 
     placeholder="emoji"
     onChange={uploadimg}
-   
+  
 
     />
   </Form.Group>

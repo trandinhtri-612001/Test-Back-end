@@ -200,7 +200,7 @@ router.put('/:id', verifyToken, async (req, res) => {
         })
                 }
     try {
-       
+       console.log('run put')
         const user = await Users.findById({ _id: req.params.id});
         if (!user) {
            return res.status(400).json({
@@ -230,8 +230,8 @@ router.put('/:id', verifyToken, async (req, res) => {
             password:hashpassword,
             email,
             phonenumber,
-            adress:adress,
-            emoji:emoji
+            adress:adress === "" ? user.adress :adress,
+            emoji:emoji === "" ?user.emoji :emoji 
         }
         const iduser = {_id:req.params.id}
 

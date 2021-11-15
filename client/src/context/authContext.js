@@ -121,7 +121,9 @@ useEffect(() => loadUser(), [])
     const updateuser = async(formupdate,_id) => {
         
         try {
+             console.log("runfffff")
             const response = await axios.put(`${apiUrl}/auth/${_id}`, formupdate)
+           
             console.log(response.data. resrUpdate.username)
             if (response.data.success) {
                 dispatch({

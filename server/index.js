@@ -5,9 +5,10 @@ require("dotenv").config();
 const cors = require('cors')
 const mongoose = require('mongoose');
 
+const URL = process.env.dburl
 const connectDB = async() => {
      try {
-		await mongoose.connect(`mongodb+srv://apptest:12345@cluster0.nbezn.mongodb.net/App_test?retryWrites=true&w=majority`,
+		await mongoose.connect(URL,
 			{
 				useNewUrlParser: true,
 				useUnifiedTopology: true,

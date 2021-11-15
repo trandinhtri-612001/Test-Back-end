@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const PORT = 8080 || process.env.PORT;
+
 require("dotenv").config();
 const cors = require('cors')
 const mongoose = require('mongoose');
-
+app.set('PORT', (process.env.PORT || 8080));
 const URL = process.env.dburl
 const connectDB = async() => {
      try {
@@ -40,6 +40,6 @@ app.use('/api/auth', Routeruser);
 
 
 
-app.listen(PORT, () => {
+app.listen(app.get('PORT'), () => {
     console.log('server runing successfully');
 })

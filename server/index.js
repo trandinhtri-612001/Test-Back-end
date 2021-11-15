@@ -8,7 +8,7 @@ app.set('PORT', (process.env.PORT || 8080));
 const URL = process.env.dburl
 const connectDB = async() => {
      try {
-		await mongoose.connect(URL,
+		await mongoose.connect(`mongodb+srv://apptest:12345@cluster0.nbezn.mongodb.net/App_test?retryWrites=true&w=majority`,
 			{
 				useNewUrlParser: true,
 				useUnifiedTopology: true,
